@@ -43,6 +43,8 @@ public class EmployeeServiceImpl
         Optional<Employee> employeeOptional=employeeRepository.findById(id);
         if(employeeOptional.isPresent())
         {
+
+
             EmployeeResponseDTO responseDTO=new EmployeeResponseDTO();
             BeanUtils.copyProperties(employeeOptional.get(),responseDTO);
 
@@ -51,4 +53,49 @@ public class EmployeeServiceImpl
         return  null;
 
     }
+
+    @Override
+    public EmployeeResponseDTO updateEmployeeById(Long id,EmployeeRequestDTO employeeRequestDTO)
+    {
+
+        Optional<Employee> employeeOptional=employeeRepository.findById(id);
+        if(employeeOptional.isPresent())
+        {
+            //update Employee
+            Employee employeeFromDb=employeeOptional.get();
+            employeeFromDb.setName(employeeRequestDTO.getName());
+            employeeFromDb.setDepartmentName(employeeRequestDTO.getDepartmentName()
+            );
+
+            Employee savedEmployee=employeeRepository.save(employeeFromDb);
+            EmployeeResponseDTO responseDTO=new EmployeeResponseDTO();
+            BeanUtils.copyProperties(employeeOptional.get(),responseDTO);
+
+            return responseDTO;
+        }
+        return null;
+
+
+    }
+
+
+    @Override
+    public  EmployeeResponseDTO deleteById(Long id)
+    {
+        Optional<Employee> employeeOptional=employeeRepository.findById(id);
+        if(employeeOptional.isPresent())
+        {
+            //update Employee
+           // Employee employeeFromDb=employeeOptional.get();
+            employeeRepository.deleteById(id);
+
+            EmployeeResponseDTO responseDTO=new EmployeeResponseDTO();
+            BeanUtils.copyProperties(employeeOptional.get(),responseDTO);
+
+            return responseDTO;
+        }
+        return null;
+
+    }
+
 }

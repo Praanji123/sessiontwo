@@ -28,4 +28,21 @@ public class EmployeeController {
     {
         return employeeService.getEmployeeById(id);
     }
+
+
+    @PutMapping("/{id}")
+    public EmployeeResponseDTO updateEmployee(@PathVariable("id") Long id,@RequestBody EmployeeRequestDTO employeeRequestDTO)
+    {
+        return employeeService.updateEmployeeById(id,employeeRequestDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public EmployeeResponseDTO deleteById(@PathVariable("id") Long id)
+    {
+
+       return employeeService.deleteById(id);
+
+    }
+
+
 }
