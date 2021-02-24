@@ -1,6 +1,7 @@
 package com.example.Sessiontwo.dto;
 
 
+import com.example.Sessiontwo.entity.Department;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,33 +9,20 @@ import lombok.Setter;
 @Setter
 public class EmployeeResponseDTO {
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
 
     private long id;
     private String name;
-    private String departmentName;
+    private DepartmentResponseDTO department;
+
+
+    public  void setDepartmentFromEntity(Department department)
+    {
+        DepartmentResponseDTO departmentResponseDTO=new DepartmentResponseDTO();
+        departmentResponseDTO.setId(department.getId());
+        departmentResponseDTO.setName(department.getName());
+        this.department=departmentResponseDTO;
+    }
 
 
 

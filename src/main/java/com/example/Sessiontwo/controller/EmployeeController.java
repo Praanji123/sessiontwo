@@ -7,6 +7,8 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/employee")
@@ -42,6 +44,14 @@ public class EmployeeController {
 
        return employeeService.deleteById(id);
 
+    }
+
+
+    //GET -/Employee/department/{id}
+    @GetMapping("/department/{id}")
+    public List<EmployeeResponseDTO> getEmployeeListByDepartMent(@PathVariable("id") Long DepartmentId)
+    {
+        return employeeService.getEmployeeListByDepartment(DepartmentId);
     }
 
 
