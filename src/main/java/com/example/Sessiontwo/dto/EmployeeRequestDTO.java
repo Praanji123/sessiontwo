@@ -13,6 +13,7 @@ public class EmployeeRequestDTO {
     private long id;
     private String name;
     private DepartmentRequestDTO department;
+    private String code;
 
 
 

@@ -13,6 +13,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -20,6 +23,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
 
     @Override
@@ -45,6 +51,37 @@ public class DepartmentServiceImpl implements DepartmentService {
     {
         return  departmentRepository.findById(id).get();
     }
+
+    @Override
+    @Transactional
+
+    public DepartmentResponseDTO updateDepartment(Long departmentId,DepartmentRequestDTO departmentRequestDTO)
+    {
+
+        Department department=departmentRepository.findById(departmentId).get();
+        List<Employee> employeeList=employeeRepository.findByDepartment_Id(departmentId);
+
+        //update Department
+        department.setName(departmentRequestDTO.getName());
+        Department savedDepartment =departmentRepository.save(department);
+
+
+
+
+        employeeList.forEach(employee -> {employee.setCode(departmentRequestDTO.getDepartmentCode());});
+        employeeRepository.saveAll(employeeList);
+
+
+        //append departmentCode to employee Code
+
+
+
+        return  null;
+
+
+    }
+
+
 
 
 
