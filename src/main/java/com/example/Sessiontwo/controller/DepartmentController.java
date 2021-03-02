@@ -11,12 +11,17 @@ import com.example.Sessiontwo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
 
     @Autowired
     private DepartmentService departmentService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @PostMapping
     public DepartmentResponseDTO createDepartment(@RequestBody DepartmentRequestDTO departmentRequestDTO) {
@@ -36,6 +41,13 @@ public class DepartmentController {
     {
         return departmentService.updateDepartment(departmentId,departmentRequestDTO);
     }
+
+    @GetMapping("/{id}/employee/mostexperienced")
+    public List<EmployeeResponseDTO> getEmployeewithmostExperienceinDepartment(@PathVariable("id") Long departmentId)
+    {
+        return  employeeService.getEmployeewithMostExperinceinDepartment(departmentId);
+    }
+
 
 
 

@@ -15,6 +15,7 @@ public class EmployeeResponseDTO {
     private String name;
     private DepartmentResponseDTO department;
     private String code;
+    private int yearOfExp;
 
 
     public  void setDepartmentFromEntity(Department department)

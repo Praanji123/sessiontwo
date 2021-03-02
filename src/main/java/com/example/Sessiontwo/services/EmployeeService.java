@@ -18,6 +18,10 @@ public interface EmployeeService {
 
     List<EmployeeResponseDTO> getEmployeeListByDepartment(Long departmentId);
 
+    List<EmployeeResponseDTO> getEmployeewithMostExperince();
+
+    List<EmployeeResponseDTO> getEmployeewithMostExperinceinDepartment(Long departmentId);
+
 
 
 }

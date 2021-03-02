@@ -21,8 +21,10 @@ public class Employee {
 
     private Long id;
     private String name;
-
     private String code;
+    private int yearOfExp;
+
+
 
 
     @ManyToOne(cascade=CascadeType.ALL)

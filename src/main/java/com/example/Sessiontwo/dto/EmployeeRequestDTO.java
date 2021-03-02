@@ -8,12 +8,12 @@ import lombok.Setter;
 @Setter
 public class EmployeeRequestDTO {
 
-
-
     private long id;
     private String name;
     private DepartmentRequestDTO department;
     private String code;
+    private int yearOfExp;
+
 
 
 

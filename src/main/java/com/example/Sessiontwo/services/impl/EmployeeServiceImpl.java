@@ -193,4 +193,45 @@ public class EmployeeServiceImpl
         }
         return employeeResponseDtoList;
     }
+
+    @Override
+    public List<EmployeeResponseDTO> getEmployeewithMostExperince() {
+        //Department department = departmentRepository.findById(departmentId).get();
+        // List<Employee> employeeList = employeeRepository.findByDepartment(department);
+
+        //  List<Employee> employeeList=employeeRepository.findByDepartment_Id(departmentId);
+
+        List<Employee> employeeList=employeeRepository.getEmployeewithMostExperince();
+        List<EmployeeResponseDTO> employeeResponseDtoList = new ArrayList<>();
+        for (Employee employee : employeeList) {
+            EmployeeResponseDTO responseDto = new EmployeeResponseDTO();
+            BeanUtils.copyProperties(employee, responseDto);
+            responseDto.setDepartmentFromEntity(employee.getDepartment());
+            employeeResponseDtoList.add(responseDto);
+        }
+        return employeeResponseDtoList;
+    }
+
+    @Override
+    public List<EmployeeResponseDTO> getEmployeewithMostExperinceinDepartment(Long departmentId) {
+        //Department department = departmentRepository.findById(departmentId).get();
+        // List<Employee> employeeList = employeeRepository.findByDepartment(department);
+
+        //  List<Employee> employeeList=employeeRepository.findByDepartment_Id(departmentId);
+
+        List<Employee> employeeList=employeeRepository.getEmployeewithMostExperinceinDepartment(departmentId);
+        List<EmployeeResponseDTO> employeeResponseDtoList = new ArrayList<>();
+        for (Employee employee : employeeList) {
+            EmployeeResponseDTO responseDto = new EmployeeResponseDTO();
+            BeanUtils.copyProperties(employee, responseDto);
+            responseDto.setDepartmentFromEntity(employee.getDepartment());
+            employeeResponseDtoList.add(responseDto);
+        }
+        return employeeResponseDtoList;
+    }
+
+
+
+
+
 }
